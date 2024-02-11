@@ -5,13 +5,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerModel _playerModel;
-    float x, y;
+    float _horAxis, _verAxis;
+    float _mouseX, _mouseY;
     void Update()
     {
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
+        _horAxis = Input.GetAxis("Horizontal");
+        _verAxis = Input.GetAxis("Vertical");
 
-        if (x != 0 || y != 0)
-            _playerModel.Move(x, y);
+        if (_horAxis != 0 || _verAxis != 0)
+            _playerModel.Move(_horAxis, _verAxis);
+
+        _mouseX = Input.GetAxis("Mouse X");
+        _mouseY = Input.GetAxis("Mouse Y");
+
+        if (_mouseX != 0 || _verAxis != 0)
+            _playerModel.SetCameraRotation(_mouseX, _mouseY);
     }
 }
