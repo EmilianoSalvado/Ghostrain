@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +5,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerModel _playerModel;
     float _horAxis, _verAxis;
     float _mouseX, _mouseY;
+
+    [SerializeField] PlayerInteractions _interaction;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         _horAxis = Input.GetAxis("Horizontal");
@@ -20,5 +26,13 @@ public class PlayerController : MonoBehaviour
 
         if (_mouseX != 0 || _verAxis != 0)
             _playerModel.SetCameraRotation(_mouseX, _mouseY);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (SubtitlesManager.Instance.Showing)
+            { SubtitlesManager.Instance.ClearText(); return; }
+            if (!_interaction.CanInteract) return;
+            _interaction.Interact();
+        }
     }
 }
