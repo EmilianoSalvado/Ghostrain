@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     float _mouseX, _mouseY;
 
     [SerializeField] PlayerInteractions _interaction;
+    [SerializeField] KeyCode[] _movementKeys;
 
     private void Start()
     {
@@ -20,6 +22,11 @@ public class PlayerController : MonoBehaviour
 
         if (_horAxis != 0 || _verAxis != 0)
             _playerModel.Move(_horAxis, _verAxis);
+
+        if (_movementKeys.Any(x => Input.GetKeyDown(x) && !SoundManager.Instance.PlayerFootstepsSource.isPlaying))
+            SoundManager.Instance.PlayerWalk(true);
+        if (_movementKeys.All(x => !Input.GetKey(x) && SoundManager.Instance.PlayerFootstepsSource.isPlaying))
+            SoundManager.Instance.PlayerWalk(false);
 
         _mouseX = Input.GetAxis("Mouse X");
         _mouseY = Input.GetAxis("Mouse Y");
