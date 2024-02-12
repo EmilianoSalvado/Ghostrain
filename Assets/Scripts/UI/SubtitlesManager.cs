@@ -18,18 +18,10 @@ public class SubtitlesManager : MonoBehaviour
         Instance = this;
     }
 
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-            DisplayText("Pablito clavó un clavito qué clavito clavó pablito");
-    }
-#endif
-
-    public void DisplayText(string s)
+    public void DisplayText(string s, AudioSource AS)
     {
         StopAllCoroutines();
-        StartCoroutine(DisplayTextRoutine(s));
+        StartCoroutine(DisplayTextRoutine(s, AS));
     }
 
     public void ClearText()
@@ -39,7 +31,7 @@ public class SubtitlesManager : MonoBehaviour
         _showing = false;
     }
 
-    IEnumerator DisplayTextRoutine(string s)
+    IEnumerator DisplayTextRoutine(string s, AudioSource AS)
     {
         _showing = true;
 
@@ -51,6 +43,7 @@ public class SubtitlesManager : MonoBehaviour
 
         foreach (var c in charArray)
         {
+            SoundManager.Instance.TalkingCharacter(AS);
             _text.text += c;
             yield return wait;
         }
