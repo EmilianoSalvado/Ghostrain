@@ -13,11 +13,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip _weirdVoiceOneShot;
     [SerializeField][Range(-2f,2f)] float _minPitch, _maxPitch;
 
-    public static SoundManager Instance;
+    public static SoundManager instance;
 
     private void Start()
     {
-        Instance = this;
+        instance = this;
     }
 
     public void TalkingCharacter(AudioSource AS)

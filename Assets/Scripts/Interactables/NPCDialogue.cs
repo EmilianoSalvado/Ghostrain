@@ -8,6 +8,6 @@ public class NPCDialogue : Interactable
     [SerializeField] AudioSource _audioSource;
     public override void Interact()
     {
-        SubtitlesManager.Instance.DisplayText(_textToDisplay, _audioSource);
+        SubtitlesManager.instance.DisplayText(_textToDisplay, _audioSource);
     }
 }

@@ -10,12 +10,12 @@ public class SubtitlesManager : MonoBehaviour
     bool _showing = false;
     public bool Showing { get { return _showing; } }
 
-    public static SubtitlesManager Instance;
+    public static SubtitlesManager instance;
 
     private void Start()
     {
-        if (Instance != null) Destroy(this);
-        Instance = this;
+        if (instance != null) Destroy(this);
+        instance = this;
     }
 
     public void DisplayText(string s, AudioSource AS)
@@ -43,7 +43,7 @@ public class SubtitlesManager : MonoBehaviour
 
         foreach (var c in charArray)
         {
-            SoundManager.Instance.TalkingCharacter(AS);
+            SoundManager.instance.TalkingCharacter(AS);
             _text.text += c;
             yield return wait;
         }
