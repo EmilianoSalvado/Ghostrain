@@ -18,10 +18,10 @@ public class SubtitlesManager : MonoBehaviour
         instance = this;
     }
 
-    public void DisplayText(string s, AudioSource AS)
+    public void DisplayText(string s, AudioSource AS, ShadowAnimation shadowAnim)
     {
         StopAllCoroutines();
-        StartCoroutine(DisplayTextRoutine(s, AS));
+        StartCoroutine(DisplayTextRoutine(s, AS, shadowAnim));
     }
 
     public void ClearText()
@@ -31,11 +31,13 @@ public class SubtitlesManager : MonoBehaviour
         _showing = false;
     }
 
-    IEnumerator DisplayTextRoutine(string s, AudioSource AS)
+    IEnumerator DisplayTextRoutine(string s, AudioSource AS, ShadowAnimation shadowAnim)
     {
         _showing = true;
 
         _text.text = "";
+
+        shadowAnim.TriggerAnimation(true);
 
         var wait = new WaitForSeconds(_timeBetweenLetters);
 
@@ -47,5 +49,7 @@ public class SubtitlesManager : MonoBehaviour
             _text.text += c;
             yield return wait;
         }
+
+        shadowAnim.TriggerAnimation(false);
     }
 }

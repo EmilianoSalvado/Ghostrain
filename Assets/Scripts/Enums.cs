@@ -1,0 +1,1 @@
+public enum ShadowAnimations { Talking, Angry, Kind }
