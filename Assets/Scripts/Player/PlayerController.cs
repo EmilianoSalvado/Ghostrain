@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour
             if (!_interaction.CanInteract) return;
             _interaction.Interact();
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _playerModel.SwitchFlashLight();
+            SoundManager.instance.PlayerFlashLight();
+        }
     }
 
     public void BehaviourEnable(bool en)

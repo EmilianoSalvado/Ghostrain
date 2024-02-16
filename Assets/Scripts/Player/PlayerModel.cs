@@ -15,6 +15,9 @@ public class PlayerModel : MonoBehaviour
     [SerializeField][Range(-0f, 180f)] float _lowerTop;
     float _ver, _hor;
 
+    [Header("FLASHLIGHT")]
+    [SerializeField] Light _light;
+
     public static Vector3 playerPosition;
 
     public void Move(float x, float y)
@@ -35,6 +38,11 @@ public class PlayerModel : MonoBehaviour
         _cameraPivot.eulerAngles = Vector3.up * _hor + Vector3.right * _ver;
 
         transform.forward = new Vector3(_cameraPivot.forward.x, transform.forward.y, _cameraPivot.forward.z);
+    }
+
+    public void SwitchFlashLight()
+    {
+        _light.enabled = !_light.enabled;
     }
 
     private void LateUpdate()

@@ -7,6 +7,8 @@ public class SoundManager : MonoBehaviour
     [Header("PLAYER SOUNDS")]
     [SerializeField] AudioSource _playerFootstepsSource;
     public AudioSource PlayerFootstepsSource { get { return _playerFootstepsSource; } }
+    [SerializeField] AudioSource _playerEffectsSource;
+    [SerializeField] AudioClip _playerFlashlightSwitch;
     bool _hasPlayed;
 
     [Header("NPC DIALOGUE")]
@@ -37,5 +39,10 @@ public class SoundManager : MonoBehaviour
             return;
         }
         _playerFootstepsSource.Pause();
+    }
+
+    public void PlayerFlashLight()
+    {
+        _playerEffectsSource.PlayOneShot(_playerFlashlightSwitch);
     }
 }
