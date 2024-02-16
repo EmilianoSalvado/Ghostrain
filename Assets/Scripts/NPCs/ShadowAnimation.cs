@@ -28,7 +28,7 @@ public class ShadowAnimation : MonoBehaviour
     {
         _isSpeaking = b;
         _animator.SetBool(animParameters[_animToTrigger], b);
-        StartCoroutine(LookAtPlayer());
+        if (b) StartCoroutine(LookAtPlayer());
     }
 
     IEnumerator LookAtPlayer()
