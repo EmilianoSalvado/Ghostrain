@@ -8,6 +8,9 @@ public class ShadowAnimation : MonoBehaviour
 
     [SerializeField] ShadowAnimations _animToTrigger;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _meshTransform;
+    bool _isSpeaking;
+    public bool IsSpeaking {  get { return _isSpeaking; } }
 
     private void Start()
     {
@@ -23,6 +26,20 @@ public class ShadowAnimation : MonoBehaviour
 
     public void TriggerAnimation(bool b)
     {
+        _isSpeaking = b;
         _animator.SetBool(animParameters[_animToTrigger], b);
+        StartCoroutine(LookAtPlayer());
+    }
+
+    IEnumerator LookAtPlayer()
+    {
+        while (_isSpeaking)
+        {
+            _meshTransform.forward = new Vector3(PlayerModel.playerPosition.x - transform.position.x,
+                transform.forward.y,
+                PlayerModel.playerPosition.z - transform.position.z);
+            yield return null;
+        }
+        _meshTransform.forward = transform.forward;
     }
 }

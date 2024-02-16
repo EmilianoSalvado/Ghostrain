@@ -15,6 +15,8 @@ public class PlayerModel : MonoBehaviour
     [SerializeField][Range(-0f, 180f)] float _lowerTop;
     float _ver, _hor;
 
+    public static Vector3 playerPosition;
+
     public void Move(float x, float y)
     {
         _dir = transform.right * x + transform.forward * y;
@@ -33,5 +35,10 @@ public class PlayerModel : MonoBehaviour
         _cameraPivot.eulerAngles = Vector3.up * _hor + Vector3.right * _ver;
 
         transform.forward = new Vector3(_cameraPivot.forward.x, transform.forward.y, _cameraPivot.forward.z);
+    }
+
+    private void LateUpdate()
+    {
+        playerPosition = transform.position;
     }
 }
