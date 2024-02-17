@@ -39,5 +39,5 @@ Material:
     m_Floats:
     - _Strength: 2.84
     m_Colors:
-    - _Offset: {r: 0.08, g: 0.06, b: 0, a: 0}
+    - _Offset: {r: 0.11, g: 0.11, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 2.3
-    - _Floor: 0.163
+    - _Amount: 3.56
+    - _Floor: 0.444
     m_Colors: []
   m_BuildTextureStacks: []
