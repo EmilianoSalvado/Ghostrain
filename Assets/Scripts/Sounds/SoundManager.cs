@@ -15,6 +15,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip _weirdVoiceOneShot;
     [SerializeField][Range(-2f,2f)] float _minPitch, _maxPitch;
 
+    [Header("SCENARY EFFECTS")]
+    [SerializeField] AudioClip _powerOff;
+
     public static SoundManager instance;
 
     private void Start()
@@ -44,5 +47,10 @@ public class SoundManager : MonoBehaviour
     public void PlayerFlashLight()
     {
         _playerEffectsSource.PlayOneShot(_playerFlashlightSwitch);
+    }
+
+    public void PowerOff()
+    {
+        _playerEffectsSource.PlayOneShot(_powerOff);
     }
 }

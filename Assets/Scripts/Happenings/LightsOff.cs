@@ -12,5 +12,6 @@ public class LightsOff : Happening
         {
             light.enabled = false;
         }
+        SoundManager.instance.PowerOff();
     }
 }
